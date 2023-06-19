@@ -5,17 +5,27 @@ const CarList = () => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        const response = await axios.get('http://backend:3000/cars');
-        setCars(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    console.log("running fetch cars")
-    fetchCars();
+    const interval = setInterval(() => {
+      // setSeconds(seconds => seconds + 1);
+      const fetchCars = async () => {
+        try {
+          const response = await axios.get('/cars');
+          // const data = await response.json()
+          setCars(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      console.log("running fetch cars")
+      fetchCars().then((result) => { 
+        console.log('hello')
+        console.log(result); 
+      }).catch(error => {
+        console.log(error); 
+      }) 
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

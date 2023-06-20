@@ -12,15 +12,15 @@ const CarList = () => {
           const response = await axios.get('/cars');
           // const data = await response.json()
           setCars(response.data);
-          console.log(response.data);
+          console.log("response.data: ",response.data);
         } catch (error) {
           console.error(error);
         }
       };
       console.log("running fetch cars")
       fetchCars().then((result) => { 
-        console.log('hello')
-        console.log(result); 
+        console.log('useEffect()>fetchCars()')
+        console.log("fetchCars() result:", result); 
       }).catch(error => {
         console.log(error); 
       }) 
@@ -33,7 +33,7 @@ const CarList = () => {
       <h2>Car List</h2>
       <ul>
         {cars.map((car) => (
-          <li key={car._id}>{car.make} - {car.model}</li>
+          <li key={car._id}>{car._id}: {car.make} - {car.model}</li>
         ))}
       </ul>
     </div>

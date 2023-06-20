@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const carSchema = new mongoose.Schema({
-  _id: Number,
+  _id: String,
   vin: String,
   plateNumber: String,
   state: String,
